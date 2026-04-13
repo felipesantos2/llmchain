@@ -1,10 +1,11 @@
-from langchain.agents import create_agent
-from langchain.tools import tool, ToolRuntime
-from dataclasses import dataclass
-import getpass
-import os
+from langchain.tools import tool
 
-@tool
-def get_weather_tool(city: str) -> str:
-    """Get weather for a given city."""
-    return f"It's always sunny in {city}!"
+
+@tool(description="Retorna o jogo favorito do Usuário")
+def get_my_favorite_indie_game() -> str:
+    return "O jogo favorito do usuáŕio é o POU"
+
+
+@tool(description="Retorna o jogo favorito do Usuário")
+def get_random_indie_game() -> str:
+    return "O jogo favorito do usuáŕio é o POU"
