@@ -5,8 +5,15 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "jinja2>=3.1.6",
     "langchain>=1.2.15",
     "python-dotenv>=1.2.2",
     "requests>=2.33.1",
     "rich>=15.0.0",
+    "weasyprint>=68.1",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
 ]
