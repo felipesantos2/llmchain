@@ -7,11 +7,6 @@ import os
 if "GOOGLE_API_KEY" not in os.environ:
     os.environ["GOOGLE_API_KEY"] = getpass.getpass("Enter your Google AI API key: ")
 
-@tool
-def get_weather_tool(city: str) -> str:
-    """Get weather for a given city."""
-    return f"It's always sunny in {city}!"
-
 agent = create_agent(
     model="gemini-3.1-pro-preview",
     tools=[get_weather_tool],
