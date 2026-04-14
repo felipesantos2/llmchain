@@ -15,14 +15,14 @@ current_date = datetime.now().strftime("%Y-%m-%d")
 
 console = Console()
 
-api_key = CONFIG.get("GOOGLE_API_KEY", None)
-ai_model = CONFIG.get("MODEL", None)
+API_KEY = CONFIG.get("GOOGLE_API_KEY", None)
+LLM_MODEL = CONFIG.get("MODEL", None)
 
-if ai_model is None:
-    ai_model = ""
+if LLM_MODEL is None:
+    LLM_MODEL = ""
 
-if api_key is None:
-    api_key = ""
+if API_KEY is None:
+    API_KEY = ""
 
 
 @tool(description="first tool")
@@ -51,7 +51,7 @@ def handle_tool_errors(request, handler):
 
 
 agent = create_agent(
-    model="gpt-4.1",
+    model=LLM_MODEL,
     tools=[search, get_weather],
     middleware=[handle_tool_errors],
     name="teste",

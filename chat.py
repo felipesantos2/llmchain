@@ -10,14 +10,14 @@ current_date = datetime.now().strftime("%Y-%m-%d")
 
 console = Console()
 
-api_key = CONFIG.get("GOOGLE_API_KEY", None)
-ai_model = CONFIG.get("MODEL", None)
+API_KEY = CONFIG.get("GOOGLE_API_KEY", None)
+LLM_MODEL = CONFIG.get("MODEL", None)
 
-if ai_model is None:
-    ai_model = ""
+if LLM_MODEL is None:
+    LLM_MODEL = ""
 
-if api_key is None:
-    api_key = ""
+if API_KEY is None:
+    API_KEY = ""
 
 SYSTEM_PROMPT = """
   Você é um jornalista especialista no mundo dos Games, com uma forte paixão pelo Lado INDIE da força.
@@ -28,14 +28,15 @@ SYSTEM_PROMPT = """
         Se um usuário lhe perguntar sobre jogos, certifique-se de saber a sua preferência.
     """
 
-history = []
+
+history: list[dict] = []
 
 
 def main():
     try:
         model = ChatGoogleGenerativeAI(
-            model=ai_model,
-            api_key=api_key,
+            model=LLM_MODEL,
+            API_KEY=API_KEY,
             temperature=1.0,
             max_tokens=None,
             timeout=None,
@@ -46,7 +47,7 @@ def main():
             console.log("Digite 'sair' para fechar: ")
             msg = input("Digite: ")
 
-            if msg in ["sair", "SAIR", "Sair", "Exit", "exit"]:
+            if msg in ["sair", "SAIR", "Sair", "Exit", "exit", "EXIT"]:
                 console.log("Historico: ", history)
                 exit()
 
@@ -54,8 +55,8 @@ def main():
 
             history.append(
                 {
-                    "human": msg,
-                    "ai": ai_response,
+                    "human_message": msg,
+                    "ai_response": ai_response,
                 }
             )
 
