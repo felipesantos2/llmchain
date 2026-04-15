@@ -16,6 +16,7 @@ dependencies = [
     "requests>=2.33.1",
     "rich>=15.0.0",
     "weasyprint>=68.1",
+    "textual[syntax]>=8.2.3",
 ]
 
 [dependency-groups]
