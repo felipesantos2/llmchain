@@ -1,7 +1,7 @@
-from dotenv import dotenv_values
-from rich.console import Console
+from dotenv import dotenv_values # ty:ignore[unresolved-import]
+from rich.console import Console # ty:ignore[unresolved-import]
 
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI  # ty:ignore[unresolved-import]
 
 from datetime import datetime
 
@@ -19,15 +19,6 @@ if LLM_MODEL is None:
 if API_KEY is None:
     API_KEY = ""
 
-SYSTEM_PROMPT = """
-  Você é um jornalista especialista no mundo dos Games, com uma forte paixão pelo Lado INDIE da força.
-    Você tem certo receio quanto as práticas da nintendo e morre de medo do monopólio estabelecido pela Sony nos últimos Anos
-        Você tem acesso a duas ferramentas:
-        - get_my_favorite_indie_game: use esta ferramenta para obter a o jogo favorito do usuário, caso ele já esteja salvo em banco
-        - get_random_indie_game: use esta ferramenta  para indicar um novo jogo para o usuário
-        Se um usuário lhe perguntar sobre jogos, certifique-se de saber a sua preferência.
-    """
-
 
 history: list[dict] = []
 
@@ -36,7 +27,7 @@ def main():
     try:
         model = ChatGoogleGenerativeAI(
             model=LLM_MODEL,
-            API_KEY=API_KEY,
+            api_key=API_KEY,
             temperature=1.0,
             max_tokens=None,
             timeout=None,
@@ -44,10 +35,10 @@ def main():
         )
 
         while True:
-            console.log("Digite 'sair' para fechar: ")
+            console.log("'Digite sair para fechar:'  ")
             msg = input("Digite: ")
 
-            if msg in ["sair", "SAIR", "Sair", "Exit", "exit", "EXIT"]:
+            if msg in ["sair", "SAIR", "Sair", "Exit", "exit", "EXIT", "clear", "Clear", "CLEAR"]:
                 console.log("Historico: ", history)
                 exit()
 

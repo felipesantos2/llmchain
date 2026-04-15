@@ -1,11 +1,11 @@
-from dotenv import dotenv_values
-from rich.console import Console
+from dotenv import dotenv_values # ty:ignore[unresolved-import]
+from rich.console import Console # ty:ignore[unresolved-import]
 
-from langchain.tools import tool
-from langchain.agents import create_agent
+from langchain.tools import tool # ty:ignore[unresolved-import]
+from langchain.agents import create_agent # ty:ignore[unresolved-import]
 
-from langchain.agents.middleware import wrap_tool_call
-from langchain.messages import ToolMessage
+from langchain.agents.middleware import wrap_tool_call # ty:ignore[unresolved-import]
+from langchain.messages import ToolMessage # ty:ignore[unresolved-import]
 
 from datetime import datetime
 
@@ -23,6 +23,16 @@ if LLM_MODEL is None:
 
 if API_KEY is None:
     API_KEY = ""
+
+
+SYSTEM_PROMPT = """
+  Você é um jornalista especialista no mundo dos Games, com uma forte paixão pelo Lado INDIE da força.
+    Você tem certo receio quanto as práticas da nintendo e morre de medo do monopólio estabelecido pela Sony nos últimos Anos
+        Você tem acesso a duas ferramentas:
+        - get_my_favorite_indie_game: use esta ferramenta para obter a o jogo favorito do usuário, caso ele já esteja salvo em banco
+        - get_random_indie_game: use esta ferramenta  para indicar um novo jogo para o usuário
+        Se um usuário lhe perguntar sobre jogos, certifique-se de saber a sua preferência.
+    """
 
 
 @tool(description="first tool")
